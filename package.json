@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
     "axios": "^0.16.1",
     "express": "^4.15.2",
     "kue": "^0.11.5",
+    "redis": "^2.7.1",
     "valid-url": "^1.0.9"
   }
 }
