@@ -9,13 +9,13 @@ User submits www.google.com to your endpoint.  The user gets back a job id. Your
 A job queue created using the Redis database and Kue, a priority job que. First, add new jobs by running:
 ```bash
 curl localhost:5000/create/{your website, formatted like 'www.facebook.com'}
-```bash
+```
 Or just enter the browser and type, http://localhost:5000/create/www.facebook.com
 
 Now, to verify if it has completed, enter in the browser the website, run 
 ```bash
 curl localhost:5000/status/www.facebook.com
-```bash
+```
 If the website is still in the queue, you will see a message that states that "This task is still running". Otherwise, you will see the HTML of the website being referred to. 
 
 
