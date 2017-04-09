@@ -58,14 +58,14 @@ function requestStatus(id, res) {
 	});
 }
 
-// function allStatus() {
-// 	client.hkeys("hash key", function (err, replies) {
-// 	    console.log(replies.length + " replies:");
-// 	    replies.forEach(function (reply, i) {
-// 	        console.log("    " + i + ": " + reply);
-// 	    });
-// 	});
-// }
+function allStatus() {
+	client.hkeys("hash key", function (err, replies) {
+	    console.log(replies.length + " replies:");
+	    replies.forEach(function (reply, i) {
+	        console.log("    " + i + ": " + reply);
+	    });
+	});
+}
 
 
 
