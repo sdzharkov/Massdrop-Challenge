@@ -25,7 +25,7 @@ First start your Redis server:
 ```bash
 redis-server
 ```
-and tehn to run teh program, 
+Now run the program:
 ```bash
 npm i 
 npm test
