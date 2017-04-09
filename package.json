@@ -1,0 +1,23 @@
+{
+  "name": "massdrop-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdzharkov/Massdrop-Challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sdzharkov/Massdrop-Challenge/issues"
+  },
+  "homepage": "https://github.com/sdzharkov/Massdrop-Challenge#readme",
+  "devDependencies": {
+    "express": "^4.15.2",
+    "kue": "^0.11.5"
+  }
+}
