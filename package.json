@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/sdzharkov/Massdrop-Challenge#readme",
   "devDependencies": {
+    "axios": "^0.16.1",
     "express": "^4.15.2",
-    "kue": "^0.11.5"
+    "kue": "^0.11.5",
+    "valid-url": "^1.0.9"
   }
 }
