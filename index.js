@@ -27,9 +27,9 @@ queue.on( 'error', function( err ) {
 function createJob(myUrl, res) {
   var job = queue.create('request', myUrl).priority('high').removeOnComplete( true ).save( function(err) {
     if( !err ) {
-      res.send("Your new id for the url is " + job.data);     // The key to the data is the provided link
-      client.hset('data', myUrl, 'none', redis.print);        // creates the new pair in the Redis 'Data' hash 
-    }
+      res.send("Your new id for the url is " + job.id);         // The key to the data is the provided link
+      client.hset(job.id, 'data', 'none', redis.print);        // creates a new hashed object {data.id : request}
+    }                                                         //  request is initally set to none
     else{
       res.send("There was an error importing your data");
     }
@@ -37,7 +37,7 @@ function createJob(myUrl, res) {
 }
 
 function requestStatus(id, res) {
-  client.hget('data', id, function(err, obj) {
+  client.hget(id, 'data', function(err, obj) {
     if (err){
       res.send(err);
     }
@@ -53,15 +53,15 @@ function requestStatus(id, res) {
   });
 }
 
-function processRequest(Job, done) { // Process that grabs the HTML and updates the Redis hash 
-  axios.get(Job.data)
+function processRequest(job, done) { // Process that grabs the HTML and updates the Redis hash 
+  axios.get(job.data)
     .then( function(response) {
-      client.hset('data', Job.data, response.data, redis.print);
+      client.hset(job.id, 'data', response.data, redis.print);
       done();
     });
 }
 
-queue.process('request', 5, function(job, done) { // the queue can process 20 jobs at once
+queue.process('request', 5, function(job, done) { // the queue can process multiple jobs, currently set to 5
   processRequest(job, done);
 });
 
@@ -72,12 +72,8 @@ app.get('/', function (req, res) {
   res.send('Massdrop Challenge: Create a request and view its status');
 })
 
-app.get('/status', function (req, res) {
-  allStatus(res);
-})
-
 app.get('/status/:id', function (req, res) {
-  requestStatus("http://"+req.params['id'], res);
+  requestStatus(req.params['id'], res);
 })
 
 app.get('/create/:url', function (req, res) {
